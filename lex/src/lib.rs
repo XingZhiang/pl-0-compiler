@@ -193,7 +193,17 @@ pub struct Token{
      }
      // 如果有非法字符,产生恐慌
      if i == code.len()+1  && beg_pos+1 != i {
-         panic!("Error: the code have illegal characters!!!!");
+         eprintln!("Error: the code have illegal  characters!!!!");
+         let mut pos = beg_pos;
+         for c in code[beg_pos..].chars(){
+             if  !c.is_ascii_whitespace(){
+                 pos+=1;
+             }else{
+                 break;
+             }
+         }
+         eprintln!("Illegal character is {} on line {}.",&code[beg_pos..pos],&code[0..beg_pos].chars().into_iter().filter(|x| *x=='\n').collect::<Vec<char>>().len()+1);
+         process::exit(1);
      }
      res
  }

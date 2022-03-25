@@ -30,7 +30,3 @@ end;
 
 call primes
 .
-
-
-
-
